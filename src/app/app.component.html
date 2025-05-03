@@ -1,0 +1,103 @@
+<div class="main-container">
+  <main class="form">
+    <div class="content">
+      <span class="title">Book Tracker</span>
+      <div class="formgrid grid content-input">
+        <div class="col">
+          <p-floatlabel>
+            <input style="width: 100%;" type="text" pInputText [(ngModel)]="bookTitle" id="bookNameInput">
+            <label htmlFor="bookNameInput">Book Name</label>
+          </p-floatlabel>
+        </div>
+        <div class="col">
+          <p-floatlabel>
+            <input style="width: 100%;" type="text" pInputText [(ngModel)]="bookAuthor" id="bookAuthorInput">
+            <label htmlFor="bookAuthorInput">Author</label>
+          </p-floatlabel>
+        </div>
+
+        <div class="card col w-full">
+          <label style="margin-left: 0.5rem; font-weight: 500; color: rgb(122, 121, 121);">Cover</label>
+          <div style="margin-top: 0.5rem;">
+            <p-fileupload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)"
+            [multiple]="false" accept="image/*" maxFileSize="10000000" mode="advanced">
+            <ng-template #empty>
+              <div>Drag and drop files to here to upload.</div>
+            </ng-template>
+            <ng-template #content>
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileupload>
+          </div>
+          
+        </div>
+
+        <div class="col">
+          <p-floatlabel>
+            <textarea rows="5" cols="45" [style]="{'resizable': 'none'}" pTextarea [(ngModel)]="bookComment"
+              id="bookCommentInput"></textarea>
+            <label htmlFor="bookCommentInput">Comment</label>
+          </p-floatlabel>
+        </div>
+
+        <div class="col card flex justify-center">
+            <label style="margin-left: 0.5rem;font-weight: 500;; color: rgb(122, 121, 121);">Rating</label>
+            <p-rating [(ngModel)]="bookRating" style="margin-top: 0.5rem;" stars="5">
+              <ng-template #cancelicon>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/cancel.png" height="24" width="24" />
+              </ng-template>
+              <ng-template #onicon>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png" height="24"
+                  width="24" />
+              </ng-template>
+              <ng-template #officon>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon.png" height="24"
+                  width="24" />
+              </ng-template>
+            </p-rating>
+        </div>
+        <div class="col">
+          {{bookTitle}}{{bookCover}}{{bookRating}}{{bookAuthor}}
+          <p-button label="Add Book" (onClick)="addBook()"
+            [disabled]="!bookTitle || !bookRating || !bookAuthor"></p-button>
+        </div>
+        <div class="col">
+          <p-button label="Clear Form" (onClick)="clearForm()"></p-button>
+        </div>
+      </div>
+      <p-message severity="info" *ngIf="msg">{{msg}}</p-message>
+    </div>
+  </main>
+  <main style="margin-left: 20px;" class="list">
+    <div class="content">
+      <span class="header">Books</span>
+      <div *ngFor="let book of books">
+        <p-card [header]="book.Title" [subheader]="'Author: ' + book.Author + ', Rating: ' + book.Rating">
+          <ng-template pTemplate="header">
+            <img [src]="book.Cover" alt="{{ book.Title }} Cover" width="100">
+          </ng-template>
+          <p>{{ book.Comment }}</p>
+          <ng-template pTemplate="footer">
+            <p-rating [ngModel]="book.Rating" [readonly]="true" stars="5">
+              <ng-template #cancelicon>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/cancel.png" height="24" width="24" />
+              </ng-template>
+              <ng-template #onicon>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png" height="24"
+                  width="24" />
+              </ng-template>
+              <ng-template #officon>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon.png" height="24"
+                  width="24" />
+              </ng-template>
+            </p-rating>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </main>
+</div>
+
+<router-outlet />

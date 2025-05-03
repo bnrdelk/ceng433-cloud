@@ -1,0 +1,66 @@
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    /* Öğeleri aralarına boşluk bırakarak hizalar */
+    align-items: flex-start;
+    height: 90vh;
+  }
+
+  .form {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    height: 90vh;
+    width: max-content;
+    /* İçeriği kadar genişlik alır */
+  }
+
+  .list {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    height: 90vh;
+    /* width: 48%; Artık sabit bir genişlik vermiyoruz */
+    flex-grow: 1;
+    /* Kalan boşluğu doldurması için */
+  }
+
+  .content {
+    background: light-dark(var(--p-surface-50), var(--p-surface-900));
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .content-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .col {
+    width: 100%;
+    margin-bottom: 0.7rem;
+  }
+
+  .content-output {
+    min-height: 2rem;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .header {
+    font-weight: 700;
+    font-size: 1.7rem;
+    text-align: right;
+    width: 100%;
+  }

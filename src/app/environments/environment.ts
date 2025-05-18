@@ -1,4 +1,4 @@
 export const environment = {
-    apiUrl: 'http://localhost:5232/api' // .Net api url
+    apiUrl: 'https://ceng433-cloud-backend-426029160726.europe-west1.run.app/api' 
   };
   
